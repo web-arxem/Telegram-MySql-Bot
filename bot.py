@@ -1,6 +1,24 @@
 import telebot
 import pymysql
 import configsql
+import sys
+import logging
+from logging.handlers import RotatingFileHandler
+
+LOG_FILE = 'C:\\Users\\user\\Документы\\папка логгирования\\logs.txt'
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.ERROR)
+
+file_handler = RotatingFileHandler(LOG_FILE, maxBytes=1000, backupCount=1)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
+
+def handle_uncaught_exception(exc_type, exc_value, exc_traceback):
+    logger.error("Unhandled exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+sys.excepthook = handle_uncaught_exception
 
 # Подключение к базе данных
 mydb = pymysql.connect(
@@ -24,7 +42,7 @@ def handlestart(message):
     if message.chat.id not in allowedchatids:
         bot.send_message(message.chat.id, "Прошу прощения но я не могу вам позволить вводить комманы, так как вы не указаны в моем коде как управляющее лицо.")
     else:
-        bot.send_message(message.chat.id, "Привет! Я бот для управления базой данных MySQL разработанный Web Arxem.\nВот мои комманды:\n/create_db - Создать базу данных\n/delete_db - Удалить базу данных\n/create_table - Создать таблицу\n/delete_table - удалить таблицу\nНо также комманды можно посмотреть во вкладке 'Меню'")
+        bot.send_message(message.chat.id, "Привет! Я бот для управления базой данных MySQL.\nВот мои комманды:\n/create_db - Создать базу данных\n/delete_db - Удалить базу данных\n/create_table - Создать таблицу\n/delete_table - удалить таблицу\nНо также комманды можно посмотреть во вкладке 'Меню'")
 
 # Обработчик команды /create_db
 @bot.message_handler(commands=['create_db'])
