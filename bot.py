@@ -5,7 +5,7 @@ import sys
 import logging
 from logging.handlers import RotatingFileHandler
 
-LOG_FILE = 'C:\\Users\\user\\Документы\\папка логгирования\\logs.txt'
+LOG_FILE = 'C:\\Tele_MySql_Logs\\logs.txt'
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
