@@ -2,7 +2,7 @@
 
 ![Снимок экрана (32)](https://github.com/web-arxem/Telegram-MySql-Bot/assets/73872832/b5bdd749-88f8-49ad-bc40-96217c4c69ea)
 
-Что бы узнать свой Telegram-ID введите в <a href='https://t.me/myidbot'>этом</a> боте комманду /getid
+Что бы узнать свой Telegram-ID можете перейти <a href='https://t.me/snl_id_bot'>сюда</a> 
 
 Важные пакеты:
 telebot
